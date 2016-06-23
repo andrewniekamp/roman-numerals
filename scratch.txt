@@ -1,0 +1,18 @@
+var translate = function(number, min, max, symbol, secondary) {
+  if (number > min && number < symbol -1) {
+    for (var i = min; i < number; i++) {
+      result.push(numerals[secondary]); //NOT SURE
+    }
+  } else if (number >= symbol -1 && number < max) {
+    if (number === symbol -1) {
+      result.push(numerals[secondary] + numerals[symbol])
+    } else {
+      result.push(numerals[symbol]);
+      if (number < max) {
+        for (var i = symbol; i < number; i++) {
+          result.push(numerals[secondary]);
+        }
+      }
+    }
+  }
+}
