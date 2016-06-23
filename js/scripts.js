@@ -22,14 +22,16 @@ var translate = function(number, min, max, symbolIndex) {
     }
   } else {
     result.push(numerals[symbolIndex - 1] + numerals[symbolIndex + 1] )
-
-    // result.push(numerals[0] + numerals[2]);
   }
 }
 
 var convert = function(number) {
   result = [];
-  if (number.length === 1) {
+  if (number.length === 2) {
+    translate(number[0], 0, 9, 1);
+    //need to join the result so it isn't overriden
+    translate(number[1], 0, 9, 1);
+  } else if (number.length === 1) {
     translate(number[0], 0, 9, 1);
   }
 }
