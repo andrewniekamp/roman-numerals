@@ -1,45 +1,50 @@
 //back
-
+var number = [];
 var result = [];
 var parsedNum = [];
 var numerals = ["I", "V", "X", "L", "C", "D", "M"];
-var convert = function(number) {
-  result = [];
-  var translate = function(number, min, max, symbol, secondary) {
-    if (number > min && number < max- 5) {
-      for (var i = min; i < number; i++) {
-        result.push(secondary); //NOT SURE
-      }
-    } else if (number >= max - 5 && number < max) {
-      if (number === max - 5) {
-        result.push(secondary + symbol)
-      } else {
-        result.push(symbol);
-        if (number < max) {
-          for (var i = max - 4; i < number; i++) {
-            result.push(secondary);
-          }
+
+var translate = function(number, min, max, symbolIndex) {
+  if (number > min && number < max- 5) {
+    for (var i = min; i < number; i++) {
+      result.push(numerals[symbolIndex - 1]); //NOT SURE
+    }
+  } else if (number >= max - 5 && number < max) {
+    if (number === max - 5) {
+      result.push(numerals[symbolIndex - 1] + numerals[symbolIndex])
+    } else {
+      result.push(numerals[symbolIndex]);
+      if (number < max) {
+        for (var i = max - 4; i < number; i++) {
+          result.push(numerals[symbolIndex - 1]);
         }
       }
     }
+  } else {
+    result.push(numerals[symbolIndex - 1] + numerals[symbolIndex + 1] )
+
+    // result.push(numerals[0] + numerals[2]);
   }
+}
 
-  translate(number, 0, 9, 'V', "I");
-
-
+var convert = function(number) {
+  result = [];
+  if (number.length === 1) {
+    translate(number[0], 0, 9, 1);
+  }
 }
 
 //front
 $(document).ready(function() {
   $("#blanks form").submit(function(event) {
     event.preventDefault();
+    number = [];
+    var numberInput = $("input#numberInput").val().split("");
 
-    var number = $("input#number").val().split("");
-
-    for (i = 0; i < number.length; i++) {
-      parsedNum.unshift(parseInt(number[i]));
+    for (i = 0; i < numberInput.length; i++) {
+      number.push(parseInt(numberInput[i]));
     }
-    console.log(parsedNum);
+    console.log(number);
 
     // parsedNum = parseInt(number);
     //
