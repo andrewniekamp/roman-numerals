@@ -1,8 +1,11 @@
 ## Specifications
 |Step | input | output|
 |-----:|:-----:|:----:|
-|convert 1 to I| 1| I|
-|convert 2 to II|2|II|
+|Convert 1-3 to I-III| 2| II|
+|Convert 4-8 to IV-VIII | 7| VII|
+|Convert 9-13 to IX-XIII | 12 | XII|
+
+
 <!-- |convert 5 to V| 5| V|
 |convert 10 to X| 10| X|
 |convert 50 to L| 50| L|
