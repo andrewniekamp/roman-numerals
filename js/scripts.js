@@ -5,32 +5,36 @@ var parsedNum = [];
 var numerals = ["I", "V", "X", "L", "C", "D", "M"];
 
 var translate = function(number, min, max, symbolIndex) {
-  if (number > min && number < max- 5) {
-    for (var i = min; i < number; i++) {
-      result.push(numerals[symbolIndex - 1]); //NOT SURE
-    }
-  } else if (number >= max - 5 && number < max) {
-    if (number === max - 5) {
-      result.push(numerals[symbolIndex - 1] + numerals[symbolIndex])
-    } else {
-      result.push(numerals[symbolIndex]);
-      if (number < max) {
-        for (var i = max - 4; i < number; i++) {
-          result.push(numerals[symbolIndex - 1]);
+  if (number !== 0) {
+    if (number > min && number < max- 5) {
+      for (var i = min; i < number; i++) {
+        result.push(numerals[symbolIndex - 1]); //NOT SURE
+      }
+    } else if (number >= max - 5 && number < max) {
+      if (number === max - 5) {
+        result.push(numerals[symbolIndex - 1] + numerals[symbolIndex])
+      } else {
+        result.push(numerals[symbolIndex]);
+        if (number < max) {
+          for (var i = max - 4; i < number; i++) {
+            result.push(numerals[symbolIndex - 1]);
+          }
         }
       }
+    } else {
+      result.push(numerals[symbolIndex - 1] + numerals[symbolIndex + 1] )
     }
-  } else {
-    result.push(numerals[symbolIndex - 1] + numerals[symbolIndex + 1] )
   }
 }
 
 var convert = function(number) {
   result = [];
-  if (number.length === 2) {
-    translate(number[0], 0, 9, 1);
+  if (number.length > 1) {
+    translate(number[0], 0, 9, 3);
+    console.log(result);
     //need to join the result so it isn't overriden
     translate(number[1], 0, 9, 1);
+    console.log(result);
   } else if (number.length === 1) {
     translate(number[0], 0, 9, 1);
   }
